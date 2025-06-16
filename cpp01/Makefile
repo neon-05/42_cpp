@@ -1,4 +1,4 @@
-EXS = ex00
+EXS = ex00 ex01 ex02 ex03
 
 all:
 	$(foreach ex, $(EXS), $(MAKE) $@ -C $(ex);)
