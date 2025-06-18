@@ -1,12 +1,20 @@
-EXS = ex00 ex01 ex02
+define NL
+
+
+endef
+
+EXS = $(addprefix ex0, $(shell seq 0 2))
 
 all:
-	$(foreach ex, $(EXS), $(MAKE) $@ -C $(ex);)
+	$(foreach ex, $(EXS), cp $(ex)/$$($(MAKE) $@ -C $(ex) -s) ./; $(NL))
 
 $(EXS):
 	$(MAKE) -C $@
 
-%:
-	$(foreach ex, $(EXS), $(MAKE) $@ -C $(ex);)
+ffclean: fclean
+	$(foreach ex, $(EXS), rm -f $$($(MAKE) target -C $(ex) -s); $(NL))
 
-.PHONY: $(EXS)
+%:
+	$(foreach ex, $(EXS), $(MAKE) $@ -C $(ex) -s; $(NL))
+
+.PHONY: $(EXS) ffclean

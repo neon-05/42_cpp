@@ -1,4 +1,5 @@
-#include "phone_book.h"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 Contact	input_contact()
 {
@@ -39,13 +40,13 @@ void	search_contact(PhoneBook *phoneBook)
 	phoneBook->display_list();
 	if (phoneBook->getCCount() == 0)
 		return;
-	std::cout << "display contact at id :";
+	std::cout << "display contact at index (0-" << phoneBook->getCCount() << "):";
 	std::getline(std::cin, in);
 	i = in[0] - '0';
 	if (i < phoneBook->getCCount())
 		phoneBook->getContact(i)->display_full();
 	else
-		std::cout << "index invalid" << std::endl;
+		std::cout << "invalid index" << std::endl;
 }
 
 int	main()
@@ -55,13 +56,14 @@ int	main()
 
 	while (std::getline(std::cin, cmd))
 	{
-		std::cout << cmd << std::endl;
 		if (cmd == "EXIT")
 			break;
 		else if (cmd == "SEARCH")
 			search_contact(&phoneBook);
 		else if (cmd == "ADD")
 			add_contact(&phoneBook);
+		else
+			std::cout << "invalid action" << std::endl;
 	}
 	return 0;
 }
