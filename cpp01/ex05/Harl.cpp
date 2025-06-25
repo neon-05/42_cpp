@@ -15,7 +15,7 @@ void Harl::complain ( std::string level )
 		(this->*functions[i])();
 		return;
 	}
-	std::cout << "invalid complaining level" << std::endl;
+	std::cout << "*mumbling something underr his breath*" << std::endl;
 }
 
 void Harl::_debug( void )	{ std::cout << _HARL_DEBUG_TEXT << std::endl; }
