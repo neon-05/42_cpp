@@ -9,18 +9,18 @@
 
 class PhoneBook
 {
-private:
-	std::vector<Contact> _contacts;
-	size_t _totalContactsAdded;
-
 public:
+	PhoneBook( void );
+	~PhoneBook();
+
 	void addContact();
 	Contact& getContact( size_t );
 	size_t getContactCount();
 	void displayList();
 
-	PhoneBook( void );
-	~PhoneBook();
+private:
+	std::vector<Contact> _contacts;
+	size_t _totalContactsAdded;
 };
 
 #endif

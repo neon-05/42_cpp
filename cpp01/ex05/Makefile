@@ -2,7 +2,7 @@ CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Harl
+NAME = harl
 
 SRC = main.cpp Harl.cpp	
 
