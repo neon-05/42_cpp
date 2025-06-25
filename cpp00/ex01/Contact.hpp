@@ -5,28 +5,22 @@
 
 class Contact
 {
-private:
-	std::string	firstname;
-	std::string	lastname;
-	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
-
 public:
-	void	display_line(int id);
-	void	display_full();
-	bool	check_fields();
-	void	input_contact();
+	void displayLine( size_t );
+	void displayFull( void );
+	void inputContactInfo( void );
 
-	Contact(
-		std::string firstname,
-		std::string lastname,
-		std::string nickname,
-		std::string	phone_number,
-		std::string	darkest_secret
-	);
-	Contact();
+	Contact( void );
 	~Contact();
+
+private:
+	std::string _firstname;
+	std::string _lastname;
+	std::string _nickname;
+	std::string _phone_number;
+	std::string _darkest_secret;
+
+	bool _check_fields();
 };
 
 #endif

@@ -1,21 +1,25 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
-#include <iostream>
+#define MAX_CONTACTS 8
+#define MIN(a, b) ((a < b) ? a : b)
 #include "Contact.hpp"
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 
 class PhoneBook
 {
 private:
-	Contact	list[8];
-	size_t	ccount;
+	std::vector<Contact> _contacts;
+	size_t _totalContactsAdded;
 
 public:
-	PhoneBook	*add(Contact	contact);
-	Contact		*getContact(unsigned int id);
-	size_t		getCCount();
-	void		display_list();
+	void addContact();
+	Contact& getContact( size_t );
+	size_t getContactCount();
+	void displayList();
 
-	PhoneBook(void);
+	PhoneBook( void );
 	~PhoneBook();
 };
 

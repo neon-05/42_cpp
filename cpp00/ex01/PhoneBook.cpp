@@ -1,59 +1,27 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void)
-{
-	this->ccount = 0;
-}
+PhoneBook::PhoneBook(void) : _totalContactsAdded(0) { _contacts.resize(MAX_CONTACTS); }
 
 PhoneBook::~PhoneBook() {}
 
-PhoneBook	*PhoneBook::add(Contact contact)
+void	PhoneBook::addContact()
 {
-	this->list[ccount & 7] = contact;
-	if (ccount < 8)
-		this->ccount++;
-	return this;
+	_contacts[_totalContactsAdded % MAX_CONTACTS].inputContactInfo();
+	_totalContactsAdded++;
 }
 
-void	PhoneBook::display_list()
+void	PhoneBook::displayList()
 {
-	if (this->ccount == 0)
+	if (_totalContactsAdded == 0)
 		std::cout << "no entries." << std::endl;
-	else if (this->ccount == 1)
+	else if (_totalContactsAdded == 1)
 		std::cout << "1 entry:" << std::endl;
 	else
-		std::cout << this->ccount << " entries:" << std::endl;
-	for (size_t i = 0; i < this->ccount; i++)
-		this->list[i].display_line(i);
+		std::cout << MIN(MAX_CONTACTS, _totalContactsAdded) << " entries:" << std::endl;
+	for (size_t i = 0; i < MIN(MAX_CONTACTS, _totalContactsAdded); i++)
+		_contacts[i].displayLine(i);
 }
 
-size_t	PhoneBook::getCCount()
-{
-	return	this->ccount;
-}
+size_t PhoneBook::getContactCount() { return MIN(MAX_CONTACTS, _totalContactsAdded); }
 
-Contact	*PhoneBook::getContact(unsigned int id)
-{
-	if (this->ccount > id)
-		return (&this->list[id]);
-	else
-		return NULL;
-}
-
-/*
-int main()
-{
-	PhoneBook p;
-
-	p.add(Contact("yohann", "labussiere", "neon_05"));
-	p.add(Contact("mae", "lllllllllllllllllll", "Loufok0"));
-	p.add(Contact("yohann", "labussiere", "neon_05"));
-	p.add(Contact("mae", "lllllllllllllllllll", "Loufok0"));
-	p.add(Contact("yohann", "labussiere", "neon_05"));
-	p.add(Contact("mae", "lllllllllllllllllll", "Loufok0"));
-	p.add(Contact("yohann", "labussiere", "neon_05"));
-	p.add(Contact("mae", "lllllllllllllllllll", "Loufok0"));
-	p.add(Contact("mae", "849551", "Loufok0"));
-	p.display_list();
-	return 0;
-}*/
+Contact& PhoneBook::getContact(size_t i) { return (_contacts[i]); }

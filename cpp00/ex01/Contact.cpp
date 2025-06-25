@@ -1,25 +1,9 @@
 #include "Contact.hpp"
 
 Contact::Contact() {}
-
 Contact::~Contact() {}
 
-Contact::Contact(
-	std::string firstname,
-	std::string lastname,
-	std::string nickname,
-	std::string phone_number,
-	std::string darkest_secret
-)
-{
-	this->firstname = firstname;
-	this->lastname = lastname;
-	this->nickname = nickname;
-	this->phone_number = phone_number;
-	this->darkest_secret = darkest_secret;
-}
-
-std::string	display_field(std::string str, size_t len)
+static std::string	truncate(std::string str, size_t len)
 {
 	if (len == 0)
 		return str;
@@ -29,37 +13,58 @@ std::string	display_field(std::string str, size_t len)
 		return std::string (len - str.length(), ' ').append(str);
 }
 
-void	Contact::display_line(int id)
+void	Contact::displayLine(size_t id)
 {
 	std::string line;
-	line.append("|").append(display_field(this->firstname, MAX_FIELD_LENGTH));
-	line.append("|").append(display_field(this->lastname, MAX_FIELD_LENGTH));
-	line.append("|").append(display_field(this->nickname, MAX_FIELD_LENGTH));
+	line.append("|").append(truncate(_firstname, MAX_FIELD_LENGTH));
+	line.append("|").append(truncate(_lastname, MAX_FIELD_LENGTH));
+	line.append("|").append(truncate(_nickname, MAX_FIELD_LENGTH));
 	std::cout << id << line << std::endl;
 }
 
-
-
-void	Contact::display_full()
+void	Contact::displayFull()
 {
-	std::cout << "First name: " << this->firstname << std::endl;
-	std::cout << "Last name: " << this->lastname << std::endl;
-	std::cout << "Nickname: " << this->nickname << std::endl;
-	std::cout << "Phone number: " << this->phone_number << std::endl;
-	std::cout << "Darkest secret: " << this->darkest_secret << std::endl;
+	std::cout << "First name: " << _firstname << std::endl;
+	std::cout << "Last name: " << _lastname << std::endl;
+	std::cout << "Nickname: " << _nickname << std::endl;
+	std::cout << "Phone number: " << _phone_number << std::endl;
+	std::cout << "Darkest secret: " << _darkest_secret << std::endl;
 }
 
-bool	Contact::check_fields()
+
+void Contact::inputContactInfo( void )
 {
-	if (this->firstname == "")
+	while (1)
+	{
+		std::cout << "First name: ";
+		std::getline(std::cin, _firstname);
+		std::cout << "Last name: ";
+		std::getline(std::cin, _lastname);
+		std::cout << "Nickname: ";
+		std::getline(std::cin, _nickname);
+		std::cout << "Phone number: ";
+		std::getline(std::cin, _phone_number);
+		std::cout << "Darkest secret: ";
+		std::getline(std::cin, _darkest_secret);
+		if (_check_fields())
+			break;
+		else
+			std::cout << "one of the fields is invalid, please try again" << std::endl;
+	}
+	std::cout << "successfully set contact info for " << _firstname << " " << _lastname << std::endl;
+}
+
+bool	Contact::_check_fields()
+{
+	if (_firstname == "")
 		return false;
-	else if (this->lastname == "")
+	else if (_lastname == "")
 		return false;
-	else if (this->nickname == "")
+	else if (_nickname == "")
 		return false;
-	else if (this->phone_number == "")
+	else if (_phone_number == "")
 		return false;
-	else if (this->darkest_secret == "")
+	else if (_darkest_secret == "")
 		return false;
 	else
 		return true;
