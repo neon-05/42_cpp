@@ -4,8 +4,6 @@
 #define MIN(a, b) ((a < b) ? a : b)
 #include "Contact.hpp"
 #include <iostream>
-#include <stdexcept>
-#include <vector>
 
 class PhoneBook
 {
@@ -19,7 +17,7 @@ public:
 	void displayList();
 
 private:
-	std::vector<Contact> _contacts;
+	Contact _contacts[MAX_CONTACTS];
 	size_t _totalContactsAdded;
 };
 

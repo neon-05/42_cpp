@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void) : _totalContactsAdded(0) { _contacts.resize(MAX_CONTACTS); }
+PhoneBook::PhoneBook(void) : _totalContactsAdded(0) {}
 
 PhoneBook::~PhoneBook() {}
 

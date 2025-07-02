@@ -2,7 +2,7 @@
 
 int main( void )
 {
-	std::string string = "HAIII DIS IZ BRAINZ";
+	std::string string = "HAIII DIS IZ BRAINZ ^-^";
 	std::string *stringptr = &string;
 	std::string &stringref = string;
 

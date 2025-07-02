@@ -30,6 +30,6 @@ void Harl::complain ( std::string level )
 }
 
 void Harl::_debug( void )	{ std::cout << _HARL_DEBUG_TEXT << std::endl; }
-void Harl::_info( void )	{ std::cout << _HARL_INFO_TEXT	 << std::endl; }
+void Harl::_info( void )	{ std::cout << _HARL_INFO_TEXT << std::endl; }
 void Harl::_warning( void )	{ std::cout << _HARL_WARNING_TEXT << std::endl; }
 void Harl::_error( void )	{ std::cout << _HARL_ERROR_TEXT << std::endl; }
