@@ -16,18 +16,8 @@ void MateriaSource::learnMateria( AMateria *materia )
 
 AMateria *MateriaSource::createMateria( const std::string& type )
 {
-	std::string materias[] = {"ice", "cure"};
-	int i;
-	for (i = 0; i < 2; i++) if (materias[i].compare(type) == 0) break;
-	switch (i)
-	{
-	case 0:
-		return new Ice();
-
-	case 1:
-		return new Cure();
-
-	default:
-		return NULL;
-	}
+	for (int i = 0; i < 4; i++) 
+		if (_knownMaterias[i]->getType().compare(type) == 0)
+			return _knownMaterias[i]->clone();
+	return NULL;
 }

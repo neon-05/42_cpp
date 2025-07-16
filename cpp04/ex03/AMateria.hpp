@@ -10,8 +10,8 @@ public:
 	AMateria( const std::string& );
 	virtual ~AMateria();
 
-	const std::string& getType() const; //Returns the materia type
-	virtual AMateria *clone() const = 0;
+	const std::string& getType( void ) const; //Returns the materia type
+	virtual AMateria *clone( void ) const = 0;
 	virtual void use( ICharacter& ) = 0;
 protected:
 	std::string _type;

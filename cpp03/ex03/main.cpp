@@ -5,9 +5,9 @@
 
 int main( void )
 {
-	DiamondTrap dt = DiamondTrap("Josh");
+	DiamondTrap dt = DiamondTrap("JoJo");
 
-	dt.attack("killer queen");
+	dt.attack("kira");
 	dt.highFiveGuys();
 	dt.guardGate();
 	dt.whoAmI();
