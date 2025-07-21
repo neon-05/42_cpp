@@ -23,6 +23,7 @@ int	main()
 	PhoneBook	phoneBook;
 	std::string	cmd;
 
+	std::cout << "enter your command" << std::endl;
 	while (getline(std::cin, cmd))
 	{
 		if (cmd == "EXIT")
@@ -32,7 +33,11 @@ int	main()
 		else if (cmd == "ADD")
 			phoneBook.addContact();
 		else
-			std::cout << "invalid action" << std::endl;
+		{
+			std::cout << "invalid command, please try again" << std::endl;
+			continue;
+		}
+		std::cout << "enter your next command" << std::endl;
 	}
 	return 0;
 }
