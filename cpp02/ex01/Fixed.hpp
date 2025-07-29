@@ -12,7 +12,6 @@ public:
 	~Fixed();
 
 	Fixed& operator=( const Fixed& );
-	friend std::ostream& operator<<( std::ostream&, const Fixed& x );
 
 	int getRawBits( void ) const;
 	void setRawBits( const int );
@@ -24,5 +23,6 @@ private:
 	static const int _fractional_bits;
 };
 
+std::ostream& operator<<( std::ostream&, const Fixed& x );
 
 #endif

@@ -12,7 +12,6 @@ public:
 	~Fixed();
 
 	Fixed& operator=( const Fixed& );
-	friend std::ostream& operator<<( std::ostream&, const Fixed& x );
 
 	bool operator>( const Fixed ) const;
 	bool operator<( const Fixed ) const;
@@ -47,5 +46,6 @@ private:
 	static const int _fractional_bits;
 };
 
+std::ostream& operator<<( std::ostream&, const Fixed& x );
 
 #endif
