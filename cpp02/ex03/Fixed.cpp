@@ -9,7 +9,7 @@ Fixed::Fixed( const float f ) : _value(f * (float)(1 << _fractional_bits)) {}
 Fixed::~Fixed() {}
 
 Fixed& Fixed::operator=( const Fixed& other ) { _value = other._value; return *this; }
-std::ostream& operator<<( std::ostream& os, const Fixed& other ) { return os << other.toFloat(); }
+std::ostream& operator<<( std::ostream& os, const Fixed& x ) { return os << x.toFloat(); }
 
 bool Fixed::operator>( const Fixed other ) const { return _value > other._value; }
 bool Fixed::operator<( const Fixed other ) const { return _value < other._value; }

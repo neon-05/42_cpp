@@ -5,7 +5,7 @@
 bool bsp( const Point a, const Point b, const Point c, const Point point );
 static Fixed point_dist_line( const Point a, const Point b, const Point point );
 
-int main( void )
+/*int main( void )
 {
 	Point a(0, 0);
 	Point b(1, 0);
@@ -13,7 +13,7 @@ int main( void )
 	Point P(0.3f, 0.4f);
 	std::cout << (bsp(a, c, b, P) ? "yes" : "no") << std::endl;
 	return 0;
-}
+}*/
 
 bool bsp( const Point a, const Point b, const Point c, const Point point )
 {

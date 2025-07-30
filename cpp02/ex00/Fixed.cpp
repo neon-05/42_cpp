@@ -9,7 +9,7 @@ Fixed::~Fixed() { std::cout << "delete" << std::endl; }
 
 Fixed& Fixed::operator=( const Fixed& other )
 {
-	std::cout << "copy assignment" << std::endl; 
+	std::cout << "copy assignment" << std::endl;
 	_value = other._value;
 	return *this;
 }
