@@ -8,7 +8,9 @@ int main( void )
 	ct1.attack("something probably");
 	ct1.takeDamage(9);
 	ct2.takeDamage(12);
-	ct1.beRepaired(-1);
+	ct2.beRepaired(1);
+	ct1.beRepaired(1);
+	ct1.beRepaired(1);
 	ct1.beRepaired(1);
 	ct1.beRepaired(1);
 	ct1.beRepaired(1);

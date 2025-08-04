@@ -10,7 +10,12 @@ DiamondTrap::DiamondTrap( void ) : ClapTrap("unnamed_clap_name"), _name("unnamed
 }
 
 DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name"), _name(name)
-	{ std::cout << MAGENTA << "[D] " << RESET << "a wild " << _name << " just spawned" << std::endl; }
+{
+	_hitPoints = FragTrap::_hitPoints;
+	_energyPoints = ScavTrap::_energyPoints;
+	_attackDamage = FragTrap::_attackDamage;
+	std::cout << MAGENTA << "[D] " << RESET << "a wild " << _name << " just spawned" << std::endl;
+}
 
 DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other), FragTrap(other), ScavTrap(other)
 	{ std::cout << MAGENTA << "[D] " << RESET << "a wild " << _name << " just got copied" << std::endl; }

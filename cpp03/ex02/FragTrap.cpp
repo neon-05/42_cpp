@@ -3,14 +3,19 @@
 
 FragTrap::FragTrap( void )
 {
-	_hitPoints = 100;
+	_hitPoints = ClapTrap::_hitPoints;
+	_energyPoints = 100;
+	_attackDamage = 30;
+	std::cout << GREEN << "[F] " << RESET << "a default " << _name << " just spawned" << std::endl;
+}
+
+FragTrap::FragTrap( std::string name ) : ClapTrap(name)
+{
+	_hitPoints = ClapTrap::_hitPoints;
 	_energyPoints = 100;
 	_attackDamage = 30;
 	std::cout << GREEN << "[F] " << RESET << "a wild " << _name << " just spawned" << std::endl;
 }
-
-FragTrap::FragTrap( std::string name ) : ClapTrap(name)
-	{ std::cout << GREEN << "[F] " << RESET << "a wild " << _name << " just spawned" << std::endl; }
 
 FragTrap::FragTrap( const FragTrap& other ) : ClapTrap(other)
 	{ std::cout << GREEN << "[F] " << RESET << "a wild " << _name << " just got copied" << std::endl; }

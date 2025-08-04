@@ -2,14 +2,14 @@
 #include "colors.h"
 
 ClapTrap::ClapTrap( void ) :
-	_hitPoints(10),
+	_hitPoints(100),
 	_energyPoints(10),
 	_attackDamage(0),
 	_name("unnamed")
-	{ std::cout << RED << "[C] " << RESET << "a wild " << _name << " just spawned" << std::endl; }
+	{ std::cout << RED << "[C] " << RESET << "a default " << _name << " just spawned" << std::endl; }
 
 ClapTrap::ClapTrap( std::string name ) :
-	_hitPoints(10),
+	_hitPoints(100),
 	_energyPoints(10),
 	_attackDamage(0),
 	_name(name)
@@ -33,11 +33,17 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& other )
 	std::cout << RED << "[C] " << RESET << " a wild " << _name << " just got copied with a '=' sign" << std::endl;
 	return *this;
 }
+
 void ClapTrap::attack(const std::string& target)
 {
 	if (_energyPoints <= 0)
 	{
 		std::cout << RED << "[C] " << RESET << _name << " is too tired to attack" << std::endl;
+		return;
+	}
+	else if (_hitPoints <= 0)
+	{
+		std::cout << RED << "[C] " << RESET << _name << " is dead" << std::endl;
 		return;
 	}
 	_energyPoints--;
@@ -59,6 +65,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (_energyPoints <= 0)
 	{
 		std::cout << RED << "[C] " << RESET << _name << " is too tired to repair itself" << std::endl;
+		return;
+	}
+	else if (_hitPoints <= 0)
+	{
+		std::cout << RED << "[C] " << RESET << _name << " is dead" << std::endl;
 		return;
 	}
 	_energyPoints--;

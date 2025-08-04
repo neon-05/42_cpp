@@ -6,9 +6,10 @@ int main( void )
 {
 	FragTrap ft1 = FragTrap("Josh");
 	FragTrap ft2 = FragTrap();
-	ScavTrap st1 = ScavTrap("pakistan airlines");
+	ScavTrap st1 = ScavTrap("eva");
 
 	ft1.attack("something probably");
+	st1.attack("something probably");
 	ft1.takeDamage(9);
 	ft2.takeDamage(12);
 	ft1.beRepaired(1);

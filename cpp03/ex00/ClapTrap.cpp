@@ -5,7 +5,7 @@ ClapTrap::ClapTrap( void ) :
 	_energyPoints(10),
 	_attackDamage(0),
 	_name("unnamed")
-	{ std::cout << "a wild " << _name << " just spawned" << std::endl; }
+	{ std::cout << "a default " << _name << " just spawned" << std::endl; }
 
 ClapTrap::ClapTrap( std::string name ) :
 	_hitPoints(10),
@@ -39,6 +39,11 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << _name << " is too tired to attack" << std::endl;
 		return;
 	}
+	else if (_hitPoints <= 0)
+	{
+		std::cout << _name << " is dead" << std::endl;
+		return;
+	}
 	_energyPoints--;
 	std::cout << _name << " deals " << _attackDamage << " damage to " << target << std::endl;
 }
@@ -58,6 +63,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (_energyPoints <= 0)
 	{
 		std::cout << _name << " is too tired to repair itself" << std::endl;
+		return;
+	}
+	else if (_hitPoints <= 0)
+	{
+		std::cout << _name << " is dead" << std::endl;
 		return;
 	}
 	_energyPoints--;
