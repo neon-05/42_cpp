@@ -13,7 +13,7 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap(name)
 {
 	_hitPoints = ClapTrap::_hitPoints;
 	_energyPoints = 50;
-	_attackDamage = 20;
+	_attackDamage = 30;
 	std::cout << BLUE << "[S] " << RESET << "a wild " << _name << " just spawned" << std::endl;
 }
 
