@@ -11,20 +11,21 @@ Bureaucrat::Bureaucrat( std::string name, uint grade): _name(name), _grade(grade
 	if (grade < _grade_max)
 		throw(Bureaucrat::GradeTooHighException());
 	else if (grade > _grade_min)
-		throw(Bureaucrat::GradeTooHighException());
+		throw(Bureaucrat::GradeTooLowException());
 }
 
 Bureaucrat::Bureaucrat( Bureaucrat& other ): _name(other._name), _grade(other._grade) {}
 
 Bureaucrat&	Bureaucrat::operator=( Bureaucrat& other )
 {
-	Bureaucrat ret(other);
-	return ret;
+	_grade = _clamp(other._grade);
+
+	return (*this);
 }
 
 std::ostream& operator<<( std::ostream& os, const Bureaucrat& k )
 {
-	return os << k.getName() << "(grade: " << k.getGrade() << ")";
+	return os << k.getName() << " (grade: " << k.getGrade() << ")";
 }
 
 Bureaucrat&	Bureaucrat::operator++( void )
@@ -61,7 +62,18 @@ Bureaucrat	Bureaucrat::operator--( int )
 	return cpy;
 }
 
+uint			Bureaucrat::_clamp( uint x )
+{
+	if (x < _grade_max)
+		return _grade_max;
+	else if (x > _grade_min)
+		return _grade_min;
+	else
+		return x;
+}
+
 const std::string&	Bureaucrat::getName( void ) const { return _name; }
 uint				Bureaucrat::getGrade( void ) const { return _grade; }
+void				Bureaucrat::signForm( Form& form ) const { form.beSigned(*this); }
 
 Bureaucrat::~Bureaucrat( void ) {}

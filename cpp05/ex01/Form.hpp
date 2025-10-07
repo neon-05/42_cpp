@@ -2,7 +2,9 @@
 #define FORM_HPP
 #include <string>
 #include <iostream>
+class Form;
 #include "Bureaucrat.hpp"
+typedef unsigned int uint;
 
 class Form
 {
@@ -17,7 +19,7 @@ public:
 	uint				getSignGrade( void ) const;
 	uint				getExecGrade( void ) const;
 
-	void				beSigned( Bureaucrat& );
+	void				beSigned( const Bureaucrat& );
 
 	class GradeTooLowException: public std::exception
 	{
@@ -32,10 +34,13 @@ public:
 	};
 
 private:
+
+	static uint			_clamp( uint );
+
 	const std::string	_name;
-	bool				_signed;
 	const uint			_grade_sign;
 	const uint			_grade_exec;
+	bool				_signed;
 
 	static const uint	_grade_min;
 	static const uint	_grade_max;

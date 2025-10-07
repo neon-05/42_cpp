@@ -2,7 +2,10 @@
 #define BUREAUCRAT_HPP
 #include <string>
 #include <iostream>
+class Bureaucrat;
 #include "Form.hpp"
+typedef unsigned int uint;
+
 
 class Bureaucrat
 {
@@ -35,6 +38,9 @@ public:
 	};
 
 private:
+
+	static uint			_clamp( uint );
+
 	const std::string	_name;
 	uint					_grade;
 

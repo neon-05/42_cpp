@@ -6,6 +6,7 @@ int main( void )
 	Bureaucrat h ("harry", 150);
 	Bureaucrat h2 (h);
 	Bureaucrat h3 ("geoff", 1);
+	Form f ("laissez-passer A-38", 8, 150);
 
 	std::cout << h++ << std::endl;
 	std::cout << h << std::endl;
@@ -31,5 +32,14 @@ int main( void )
 	}
 	
 	std::cout << h3 << std::endl;
+
+	try
+	{
+		h3.signForm(f);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return 0;
 }
