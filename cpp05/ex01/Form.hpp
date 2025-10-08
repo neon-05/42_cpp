@@ -11,7 +11,7 @@ class Form
 public:
 	Form( std::string, uint, uint );
 	Form( Form& );
-	Form operator=( Form& );
+	Form& operator=( Form& );
 	~Form( void );
 
 	bool				isSigned( void ) const;

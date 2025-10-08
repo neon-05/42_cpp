@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 int main( void )
@@ -35,11 +36,13 @@ int main( void )
 
 	try
 	{
-		h3.signForm(f);
+		h.signForm(f);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
+	h3.signForm(f);
+	h2.signForm(f);
 	return 0;
 }

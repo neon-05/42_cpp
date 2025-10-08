@@ -20,7 +20,7 @@ Bureaucrat&	Bureaucrat::operator=( Bureaucrat& other )
 {
 	_grade = _clamp(other._grade);
 
-	return (*this);
+	return *this;
 }
 
 std::ostream& operator<<( std::ostream& os, const Bureaucrat& k )

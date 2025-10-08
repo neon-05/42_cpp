@@ -32,8 +32,7 @@ Form::Form( Form& other ):
 
 Form	Form::operator=( Form& other )
 {
-	Form ret (other);
-	return ret;
+	return *this;
 }
 
 Form::~Form( void ) {}
@@ -56,7 +55,9 @@ uint				Form::getExecGrade( void ) const { return _grade_exec; }
 
 void				Form::beSigned( const Bureaucrat& bureaucrat )
 {
-	if (bureaucrat.getGrade() <= _grade_sign)
+	if (_signed)
+		std::cout << "form " << *this << " is already signed" << std::endl;
+	else if (bureaucrat.getGrade() <= _grade_sign)
 	{
 		_signed = true;
 		std::cout << bureaucrat << " signed form " << *this << std::endl;

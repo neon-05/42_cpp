@@ -42,7 +42,7 @@ private:
 	static uint			_clamp( uint );
 
 	const std::string	_name;
-	uint					_grade;
+	uint				_grade;
 
 	static const uint	_grade_min;
 	static const uint	_grade_max;
