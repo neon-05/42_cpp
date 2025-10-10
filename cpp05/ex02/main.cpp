@@ -7,8 +7,9 @@ int main( void )
 {
 	Bureaucrat h ("harry", 150);
 	Bureaucrat h3 ("geoff", 1);
-	AForm *f = new ShrubberyCreationForm("tree");
-	AForm *f2;
+	AForm *f = new ShrubberyCreationForm("home");
+	AForm *f2 = new RobotomyRequestForm("f");
+	AForm *f3 = new PresidentialPardonForm("this guy");
 
 	try
 	{
@@ -31,6 +32,12 @@ int main( void )
 	h3.signForm(*f);
 	h.signForm(*f);
 	h3.execForm(*f);
+	h3.signForm(*f2);
+	h3.execForm(*f2);
+	h3.signForm(*f3);
+	h3.execForm(*f3);
 	delete f;
+	delete f2;
+	delete f3;
 	return 0;
 }

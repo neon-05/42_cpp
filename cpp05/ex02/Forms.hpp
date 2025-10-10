@@ -2,7 +2,10 @@
 #define FORMS_HPP
 #include "AForm.hpp"
 #include <iostream>
+#include <string>
 #include <fstream>
+#include <cstdlib>  // for rand()
+#include <unistd.h> // for sleep()
 
 class ShrubberyCreationForm: public AForm
 {
@@ -12,9 +15,6 @@ public:
 	~ShrubberyCreationForm( void );
 
 	void	execute( const Bureaucrat& ) const;
-
-private:
-	const std::string	_target;
 };
 
 class RobotomyRequestForm: public AForm

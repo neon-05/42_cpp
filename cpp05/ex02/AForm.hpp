@@ -9,7 +9,7 @@ typedef unsigned int uint;
 class AForm
 {
 public:
-	AForm( std::string, uint, uint );
+	AForm( std::string, uint, uint, std::string );
 	AForm( AForm& );
 	AForm& operator=( AForm& );
 	virtual ~AForm( void );
@@ -40,8 +40,10 @@ public:
 		const char *what( void ) const throw();
 	};
 
-private:
+protected:
+	const std::string	_target;
 
+private:
 	static uint			_clamp( uint );
 
 	const std::string	_name;
@@ -51,6 +53,7 @@ private:
 
 	static const uint	_grade_min;
 	static const uint	_grade_max;
+
 };
 
 std::ostream& operator<<( std::ostream&, const AForm& );

@@ -7,7 +7,8 @@ const char *AForm::GradeTooHighException::what( void ) const throw() { return "g
 const char *AForm::GradeTooLowException::what( void ) const throw() { return "grade too low"; }
 const char *AForm::ExecUnsignedFormException::what( void ) const throw() { return "attempted to execute an unsigned form"; }
 
-AForm::AForm( std::string name, uint sign_grade, uint exec_grade ):
+AForm::AForm( std::string name, uint sign_grade, uint exec_grade, std::string target ):
+	_target(target),
 	_name(name),
 	_grade_sign(_clamp(sign_grade)),
 	_grade_exec(_clamp(exec_grade)),
