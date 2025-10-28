@@ -24,8 +24,8 @@ Bureaucrat::Bureaucrat( Bureaucrat& other ): _name(other._name), _grade(other._g
 
 Bureaucrat&	Bureaucrat::operator=( Bureaucrat& other )
 {
-	Bureaucrat ret(other);
-	return ret;
+	_grade = other._grade;
+	return *this;
 }
 
 std::ostream& operator<<( std::ostream& os, const Bureaucrat& k )

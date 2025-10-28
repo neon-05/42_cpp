@@ -30,8 +30,9 @@ Form::Form( Form& other ):
 	_signed(other._signed)
 	{}
 
-Form	Form::operator=( Form& other )
+Form&	Form::operator=( Form& other )
 {
+	(void) other;
 	return *this;
 }
 
