@@ -5,12 +5,16 @@
 #include <iomanip>
 #include <cmath>
 
-
 class ScalarConverter
 {
-	public:
-		static void	convert( std::string& );
-};
+public:
+	static void	convert( std::string& );
 
+private:
+	ScalarConverter();
+	ScalarConverter( const ScalarConverter& );
+	~ScalarConverter();
+	ScalarConverter& operator=( const ScalarConverter& );
+};
 
 #endif

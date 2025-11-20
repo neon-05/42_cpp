@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 
-static void	print_int(int int_val, double float_val, bool float_from_int);
-static void	print_float(int int_val, double float_val, bool float_from_int);
+static void	print_int( int int_val, double float_val, bool float_from_int );
+static void	print_float( int int_val, double float_val, bool float_from_int );
 
 void	ScalarConverter::convert( std::string& s )
 {
@@ -21,7 +21,7 @@ void	ScalarConverter::convert( std::string& s )
 	print_float(int_val, float_val, float_from_int);
 }
 
-static void	print_int(int int_val, double float_val, bool float_from_int)
+static void	print_int( int int_val, double float_val, bool float_from_int )
 {
 	if (float_from_int)
 	{
@@ -50,7 +50,7 @@ static void	print_int(int int_val, double float_val, bool float_from_int)
 	}
 }
 
-static void	print_float(int int_val, double float_val, bool float_from_int)
+static void	print_float( int int_val, double float_val, bool float_from_int )
 {
 	if (float_from_int)
 		float_val = static_cast<double>(int_val);

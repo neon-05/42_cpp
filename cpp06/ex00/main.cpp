@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-int main(int argc, char const *argv[])
+int main( int argc, char const *argv[] )
 {
 	std::string s;
 	if (argc < 2)
