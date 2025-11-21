@@ -7,15 +7,14 @@ template <typename T>
 class Array
 {
 private:
+	uint	_len;
 	T		*_arr;
-	uint	len;
 
 public:
 	Array( uint );
-	Array( T *, uint );
 	Array( const Array& );
 	~Array( void );
-	Array& operator=( const Array& );
+	Array&	operator=( const Array& );
 
 	class OutOfBoundsException: public std::exception
 	{
@@ -23,9 +22,14 @@ public:
 		const char *what( void ) const throw();
 	};
 
-	T& operator[]( int );
-	T operator[]( int ) const;
+	T	operator[]( uint ) const;
+	T&	operator[]( uint );
+
+	uint	getLen( void ) const;
 };
 
+template <typename T>
+std::ostream& operator<<( std::ostream&, const Array<T>& );
 
+#include "Array.tpp"
 #endif
