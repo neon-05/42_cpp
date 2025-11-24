@@ -2,9 +2,9 @@ CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = easyfind
+NAME = span
 
-SRC = main.cpp
+SRC = main.cpp Span.cpp
 
 RM = rm -f
 

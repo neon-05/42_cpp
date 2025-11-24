@@ -1,12 +1,13 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 #include <vector>
+#include <algorithm>
+#include <iostream>
 typedef unsigned int uint;
 
 class Span
 {
 private:
-	uint				_nums;
 	std::vector<int>	_vec;
 
 public:
@@ -15,22 +16,27 @@ public:
 	~Span( void );
 	Span&	operator=( const Span& );
 
-	void addNumber( int );
+	void	addNumber( int );
 
-	int shortestSpan() const;
-	int longestSpan() const;
+	int		shortestSpan( void ) const;
+	int		longestSpan( void ) const;
+
+	const std::vector<int>&	getVec( void ) const;
+	int						getCapacity( void ) const;
 
 	class CannotAddItemException: public std::exception
 	{
 	public:
-		const char *what( void ) const throw();
+		const char	*what( void ) const throw();
 	};
 
-	class NotEnoughItemsException: public std::exception // is that a mfking minecaft reference ?
+	class NotEnoughItemsException: public std::exception
 	{
 	public:
-		const char *what( void ) const throw();
+		const char	*what( void ) const throw();
 	};
 };
+
+std::ostream& operator<<( std::ostream& os, const Span& span );
 
 #endif
