@@ -9,7 +9,7 @@ all:
 	$(foreach ex, $(EXS), cp $(ex)/$$($(MAKE) $@ -C $(ex) -s) ./; $(NL))
 
 $(EXS):
-	$(MAKE) -C $@
+	cp $@/$$($(MAKE) -C $@ -s) ./
 
 ffclean: fclean
 	$(foreach ex, $(EXS), rm -f $$($(MAKE) target -C $(ex) -s); $(NL))
