@@ -4,7 +4,10 @@ template <typename T>
 const char	*Array<T>::OutOfBoundsException::what( void ) const throw() { return "index out of bounds"; }
 
 template <typename T>
-Array<T>::Array( uint n ) : _len(n), _arr(new T[n]() ) {}
+Array<T>::Array( void ) : _len(0), _arr(NULL) {}
+
+template <typename T>
+Array<T>::Array( uint n ) : _len(n), _arr(new T[n]()) {}
 
 template <typename T>
 Array<T>::Array( const Array& other) : _len(other._len), _arr(new T[_len]())
@@ -22,7 +25,7 @@ Array<T>::~Array( void )
 template <typename T>
 Array<T>&	Array<T>::operator=( const Array& other )
 {
-	if (_arr)
+	if (this != &other)
 		delete[] _arr;
 	_len = other._len;
 	_arr = new T[_len]();
@@ -47,15 +50,16 @@ T&	Array<T>::operator[]( uint i )
 }
 
 template <typename T>
-uint	Array<T>::getLen( void ) const { return _len; }
+uint	Array<T>::size( void ) const { return _len; }
 
 template <typename T>
 std::ostream& operator<<( std::ostream& os, const Array<T>& arr )
 {
-	uint max = arr.getLen();
+	uint max = arr.size();
+	os << '{';
 	for (uint i = 0; i < max; i++)
 	{
-		os << ((i == 0) ? "{" : ", ") << arr[i];
+		os << ((i > 0) ? ", " : "") << arr[i];
 	}
 	os << '}';
 	return os;

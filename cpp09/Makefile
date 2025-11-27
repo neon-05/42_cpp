@@ -3,10 +3,9 @@ define NL
 
 endef
 
-EXS = $(addprefix ex0, $(shell seq 0 2))
+EXS = $(addprefix ex0, $(shell seq 0 0))
 
-all:
-	$(foreach ex, $(EXS), cp $(ex)/$$($(MAKE) $@ -C $(ex) -s) ./; $(NL))
+all: $(EXS) target
 
 $(EXS):
 	cp $@/$$($(MAKE) -C $@ -s) ./

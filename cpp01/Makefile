@@ -5,7 +5,7 @@ endef
 
 EXS = $(addprefix ex0, $(shell seq 0 5))
 
-all:
+all: target
 	$(foreach ex, $(EXS), cp $(ex)/$$($(MAKE) $@ -C $(ex) -s) ./; $(NL))
 
 $(EXS):

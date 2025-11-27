@@ -6,11 +6,8 @@ typedef unsigned int uint;
 template <typename T>
 class Array
 {
-private:
-	uint	_len;
-	T		*_arr;
-
 public:
+	Array( void );
 	Array( uint );
 	Array( const Array& );
 	~Array( void );
@@ -25,7 +22,11 @@ public:
 	T	operator[]( uint ) const;
 	T&	operator[]( uint );
 
-	uint	getLen( void ) const;
+	uint	size( void ) const;
+
+private:
+	uint	_len;
+	T		*_arr;
 };
 
 template <typename T>
