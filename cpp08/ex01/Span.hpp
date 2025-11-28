@@ -17,7 +17,8 @@ public:
 	Span&	operator=( const Span& );
 
 	void	addNumber( int );
-	void	addNumbers( int );
+	template<typename It>
+	void	addNumbers( It, It );
 
 	int		shortestSpan( void ) const;
 	int		longestSpan( void ) const;
@@ -39,5 +40,12 @@ public:
 };
 
 std::ostream& operator<<( std::ostream& os, const Span& span );
+
+template<typename It>
+void	Span::addNumbers( It begin, It end )
+{
+	while (begin < end)
+		addNumber(*(begin++));
+}
 
 #endif
