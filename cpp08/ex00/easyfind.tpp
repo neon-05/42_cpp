@@ -1,6 +1,6 @@
 #include "easyfind.hpp"
 
-const char	*ItemNotFoundException::what( void ) const throw() { return "item not found"; }
+const char	*ItemNotFoundException::what( void ) const throw() { return "404 item not found"; }
 
 template<typename T>
 typename T::iterator	easyfind( T& container, int n )
