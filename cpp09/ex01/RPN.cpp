@@ -1,12 +1,12 @@
 #include "RPN.hpp"
 
-static int process_number( int n, std::stack<int>& s );
-static int process_operator( int op, std::stack<int>& s );
+static int process_number( int, std::stack<int>& );
+static int process_operator( int, std::stack<int>& );
 
-static int	_add( int a, int b );
-static int	_sub( int a, int b );
-static int	_mul( int a, int b );
-static int	_div( int a, int b );
+static int	_add( int a, int b ) { return a + b; }
+static int	_sub( int a, int b ) { return a - b; }
+static int	_mul( int a, int b ) { return a * b; }
+static int	_div( int a, int b ) { return a / b; }
 
 int process_token( char t, std::stack<int>& s )
 {
@@ -16,10 +16,10 @@ int process_token( char t, std::stack<int>& s )
 	if (std::isdigit(t))
 		return process_number(t - '0', s);
 	op = strchr(set, t) - set;
-	if (op >= 0)
+	if (op >= 0 && op < 4)
 		return process_operator(op, s);
 	else
-		std::cerr << "invalid token: " << t << std::endl;
+		std::cerr << "invalid token: '" << t << "'" << std::endl;
 	return 1;
 }
 
@@ -45,8 +45,3 @@ static int process_operator( int op, std::stack<int>& s )
 	s.push(op_f[op](a, b));
 	return 0;
 }
-
-static int	_add( int a, int b ) { return a + b; }
-static int	_sub( int a, int b ) { return a - b; }
-static int	_mul( int a, int b ) { return a * b; }
-static int	_div( int a, int b ) { return a / b; }
