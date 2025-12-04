@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = pmergeme
 
-SRC = main.cpp PmergeMe.cpp
+SRC = main.cpp
 
 RM = rm -f
 

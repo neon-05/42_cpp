@@ -1,29 +1,21 @@
 #include "PmergeMe.hpp"
 
-typedef std::vector<std::pair<int, int> > PairVec;
-
-static void print( std::vector<std::pair<int, int> >& vec )
-{
-	std::vector<std::pair<int, int> >::iterator it = vec.begin();
-	while (it != vec.end())
-	{
-		std::cout << "(" << it->first << ", " << it->second << ")" << std::endl;
-		it++;
-	}
-}
-
-static void sort( std::vector<std::pair<int, int> >& v )
-{
-	std::swap(v[0], v[3]);
-	std::swap(v[1], v[2]);
-}
-
 uint jacobsthal( uint n )
 {
 	if (n == 0)
 		return 0;
 	else
 		return (jacobsthal(n - 1) * 2) + ((n & 1) ? 1 : -1);
+}
+
+template <typename C>
+void insert( typename C::iterator to, typename C::iterator from )
+{
+	while (to != from)
+	{
+		std::swap(*to, *from);
+		to++;
+	}
 }
 
 /*
@@ -40,11 +32,47 @@ algorithm:
 	insert last unpaired number
 }
 */
-void fordJhonsonSort( std::vector<int>& vec )
+template <typename C>
+void fordJhonsonSort( typename C::iterator begin, typename C::iterator end, uint lvl )
 {
-	const uint size = vec.size();
+	const uint size = std::distance(begin, end);
 	if (size < 2)
 		return ;
+	//typedef typename C::value_type T;
+	const uint half = size / 2;
+	
+	for (typename C::iterator it = begin; it != begin + half; it++)
+	{
+		if (*it > *(it + half))
+			for (uint i = 0; i < (1u << lvl); i++)
+				std::swap(*(it + size*i), *(it + half + size*i));
+	}
+	fordJhonsonSort<C>(begin, begin + half, lvl + 1);
+	typename C::iterator it = begin + (size & 0xFFFFFFFE);
+	typename C::iterator new_end = begin + half;
+	uint to_go = half;
+	uint n = 2;
+	while ( new_end != it )
+	{
+		insert<C>(std::lower_bound(begin, new_end, *it), it);
+		new_end++;
+		n++;
+		to_go--;
+	}
+	it++;
+	//insert<C>(std::lower_bound(begin, new_end, *it), it);
+
+
+/*
+
+
+
+
+
+
+
+
+
 	PairVec	pairs;
 	int		extra = (vec.size() & 1) ? vec.back() : -1;
 
@@ -89,5 +117,5 @@ void fordJhonsonSort( std::vector<int>& vec )
 			}
 		}
 	}
-	vec.insert(std::lower_bound(vec.begin(), vec.end(), extra), extra);
+	vec.insert(std::lower_bound(vec.begin(), vec.end(), extra), extra);*/
 }

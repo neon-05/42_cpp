@@ -4,7 +4,9 @@
 #include <iostream>
 typedef unsigned int uint;
 
-void fordJhonsonSort( std::vector<int>& vec );
+template <typename C>
+void fordJhonsonSort( typename C::iterator begin, typename C::iterator end, uint lvl );
 uint jacobsthal( uint n );
 
+#include "PmergeMe.tpp"
 #endif
