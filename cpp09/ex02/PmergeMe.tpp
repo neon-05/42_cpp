@@ -17,6 +17,40 @@ void insert( typename C::iterator to, typename C::iterator from )
 		to++;
 	}
 }
+template <typename C>
+static void _fordJhonsonSort( typename C::iterator begin, typename C::iterator end, uint lvl )
+{
+	const uint size = std::distance(begin, end);
+	if (size < 2)
+		return ;
+	const uint half = size / 2;
+	
+	for (typename C::iterator it = begin; it != begin + half; it++)
+	{
+		if (*it > *(it + half))
+			for (uint i = 0; i < (1u << lvl); i++)
+				std::swap(*(it + size*i), *(it + half + size*i));
+	}
+	_fordJhonsonSort<C>(begin, begin + half, lvl + 1);
+	typename C::iterator it = begin + (size & 0xFFFFFFFE);
+	typename C::iterator cur = it;
+	uint sorted_size = half;
+	uint n = 0;
+	while (sorted_size < (size & 0xFFFFFFFE))
+	{
+		while (cur == it)
+		{
+			uint j_diff = jacobsthal(n + 1) - jacobsthal(n);
+			cur = begin + std::max((size & 0xFFFFFFFE) - j_diff, sorted_size);
+		}
+		insert<C>(std::lower_bound(begin, begin + sorted_size, *cur), cur);
+		cur++;
+		sorted_size++;
+	}
+	if (size & 1)
+		insert<C>(std::lower_bound(begin, it, *it), it);
+}
+
 
 /*
 Ford-Jhonson sorting algorithm
@@ -33,89 +67,7 @@ algorithm:
 }
 */
 template <typename C>
-void fordJhonsonSort( typename C::iterator begin, typename C::iterator end, uint lvl )
+void fordJhonsonSort( C& arr )
 {
-	const uint size = std::distance(begin, end);
-	if (size < 2)
-		return ;
-	//typedef typename C::value_type T;
-	const uint half = size / 2;
-	
-	for (typename C::iterator it = begin; it != begin + half; it++)
-	{
-		if (*it > *(it + half))
-			for (uint i = 0; i < (1u << lvl); i++)
-				std::swap(*(it + size*i), *(it + half + size*i));
-	}
-	fordJhonsonSort<C>(begin, begin + half, lvl + 1);
-	typename C::iterator it = begin + (size & 0xFFFFFFFE);
-	typename C::iterator new_end = begin + half;
-	uint to_go = half;
-	uint n = 2;
-	while ( new_end != it )
-	{
-		insert<C>(std::lower_bound(begin, new_end, *it), it);
-		new_end++;
-		n++;
-		to_go--;
-	}
-	it++;
-	//insert<C>(std::lower_bound(begin, new_end, *it), it);
-
-
-/*
-
-
-
-
-
-
-
-
-
-	PairVec	pairs;
-	int		extra = (vec.size() & 1) ? vec.back() : -1;
-
-	for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end() && it != vec.end() - 1; it += 2)
-	{
-		std::pair<int, int>	p(*it, *(it + 1));
-		if (p.first > p.second)
-			std::swap(p.first, p.second);
-		pairs.insert(pairs.end(), p);
-	}
-	vec.clear();
-	sort(pairs);
-	print(pairs);
-	if (vec.size() & 1)
-		std::cout << extra << std::endl;
-
-	for (PairVec::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-	{
-		vec.push_back(it->second);
-		std::cout << it->second << ", ";
-	}
-	std::cout << std::endl;
-	
-	vec.insert(vec.begin(), pairs[0].first);
-	std::cout << vec[0] << "<-" << std::endl;
-	int	old_j;
-	int	new_j = 1;
-	int	offset = 0;
-	for (int n = 3; jacobsthal(n) < size; n++)
-	{
-		old_j = new_j;
-		new_j = jacobsthal(n);
-		for (int i = new_j; i > old_j; i--)
-		{
-			if (i <= (int) pairs.size())
-			{
-				vec.insert(std::lower_bound(vec.begin(), vec.begin() + i + offset++, pairs[i - 1].first), pairs[i - 1].first);
-				std::cout << pairs[i - 1].first << "| ";
-				for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
-					std::cout << *it << ", ";
-				std::cout << std::endl;
-			}
-		}
-	}
-	vec.insert(std::lower_bound(vec.begin(), vec.end(), extra), extra);*/
+	_fordJhonsonSort<C>( arr.begin(), arr.end(), 0);
 }
