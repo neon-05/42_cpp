@@ -8,6 +8,8 @@ int main( int argc, const char *argv[] )
 		return 1;
 	}
 	std::ifstream					input(argv[1]);
+	if (!input.good())
+		throw (std::runtime_error("bad input file"));
 	std::map<std::string, float>	map;
 	std::string						line;
 	read_data(map);

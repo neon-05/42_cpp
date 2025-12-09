@@ -19,6 +19,8 @@ static bool	check_valid_date( std::string s )
 void		read_data( std::map<std::string, float>& map )
 {
 	std::ifstream					data("data.csv");
+	if (!data.good())
+		throw (std::runtime_error("there is no 'data.csv' file here"));
 	std::string						line;
 	std::pair<std::string, float>	p;
 	std::getline(data, line);
@@ -29,15 +31,15 @@ void		read_data( std::map<std::string, float>& map )
 		if (!check_valid_date(p.first) || isinf(p.second) || isnan(p.second))
 			continue;
 		if (map.count(p.first) > 0)
-			std::cerr << "WARNING: duplicate date record. may result in undefined behavior" << std::endl;
-		map.insert(map.end(), p);
+			std::cerr << "WARNING: duplicate date record. will result in undefined behavior" << std::endl;
+		map.insert(p);
 	}
 }
 
 void		calculate_amounts( std::string line, std::map<std::string, float>& map )
 {
 	std::string	date = line.substr(0, 10);
-	float val = strtof(line.c_str() + 13, NULL);
+	float val = atof(line.c_str() + 13);
 	float rate;
 	std::map<std::string, float>::iterator it;
 
